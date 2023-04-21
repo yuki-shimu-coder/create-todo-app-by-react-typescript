@@ -15,18 +15,28 @@ react,typescriptの環境構築
 docker compose build
 ```
 
-React, TypeScriptでプロジェクトを作成
+<!-- すでに作成済み -->
+<!-- React, TypeScriptでプロジェクトを作成
 
 ```
 docker compose run --rm frontend sh -c 'npx create-react-app frontend --template typescript'
-```
+``` -->
 
-プロジェクトを作成したら、下記コマンドでDockerコンテナを起動してください
+下記コマンドでDockerコンテナを起動してください
 
 ```
-docker compose up
+docker compose up -d
 ```
 
 コンテナを起動したら、下記コマンドを実行してアプリの依存関係をインストールしてください
+yarn installでインストールが完了したら、yarn startでアプリを起動してください。
+
+```
+docker compose exec frontend /bin/sh
+cd frontend/
+yarn install
+yarn start
+```
+
 
 http://localhost:3000 にアクセスし、reactアプリが起動していることを確認してください。※起動には時間がかかります。
