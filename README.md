@@ -29,7 +29,9 @@ docker compose up -d
 ```
 
 コンテナを起動したら、下記コマンドを実行してアプリの依存関係をインストールしてください
+
 yarn installでインストールが完了したら、yarn startでアプリを起動してください。
+
 yarn install実行済みの場合は、yarn startしてください。
 
 ```
