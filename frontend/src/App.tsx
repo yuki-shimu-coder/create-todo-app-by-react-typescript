@@ -3,24 +3,23 @@ import "./App.css";
 import "./styles.css";
 
 function App() {
-	// 入力値のstate
+	// 入力値のstate string型
 	const [todoText, setTodoText] = useState<string>("");
 
-	// 未完了TODOリストのstate
+	// 未完了TODOリストのstate string型の配列
 	const [incompleteTodos, setIncompleteTodos] = useState<string[]>([
 		"aaaa",
 		"iiii",
 	]);
 
-	// 完了TODOリストのstate
+	// 完了TODOリストのstate string型の配列
 	const [completeTodos, setCompleteTodos] = useState<string[]>([
 		"uuuu",
 		"eeee",
 	]);
 
-	//入力イベントを定義
+	//入力イベントを定義 引数に,HTMLのinput要素の変更イベントに対する型を定義
 	const onChangeTodoText = (e: React.ChangeEvent<HTMLInputElement>) => {
-		//引数に,HTMLのinput要素の変更イベントに対する型を定義
 		setTodoText(e.target.value);
 	};
 
@@ -35,7 +34,7 @@ function App() {
 		setTodoText("");
 	};
 
-	//削除ボタンのイベントを定義
+	//削除ボタンのイベントを定義 引数に、number型を定義
 	const onClickDelete = (index: number) => {
 		// 未完了のTODOリストをコピー
 		const newTodos = [...incompleteTodos];
@@ -45,7 +44,7 @@ function App() {
 		setIncompleteTodos(newTodos);
 	};
 
-	// 完了ボタンのイベントを定義
+	// 完了ボタンのイベントを定義 引数に、number型を定義
 	const onClickComplete = (index: number) => {
 		// 未完了のTODOリストをコピー
 		const newIncompleteTodosTodos = [...incompleteTodos];
@@ -61,7 +60,7 @@ function App() {
 		setCompleteTodos(newCompleteTodos);
 	};
 
-	// 戻すボタンのイベントを定義
+	// 戻すボタンのイベントを定義 引数に、number型を定義
 	const onClickBack = (index: number) => {
 		// 完了のTODOリストをコピー
 		const newCompleteTodos = [...completeTodos];
