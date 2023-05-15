@@ -46,6 +46,22 @@ function App() {
 		setIncompleteTodos(newTodos);
 	};
 
+	// 完了ボタンのイベントを定義
+	const onClickComplete = (index: number) => {
+		// 未完了のTODOリストをコピー
+		const newIncompleteTodosTodos = [...incompleteTodos];
+		// コピーした配列から、該当するindexの要素を削除する
+		newIncompleteTodosTodos.splice(index, 1);
+    
+		// 完了のTODOリストをコピーして、完了したタスクを追加
+		const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+
+		// 削除後の配列を未完了TODOリストとしてセット
+		setIncompleteTodos(newIncompleteTodosTodos);
+    // タスクが追加された配列をセット
+    setCompleteTodos(newCompleteTodos);
+	};
+
 	return (
 		<>
 			{/* タスク入力エリア */}
@@ -67,7 +83,13 @@ function App() {
 							<li key={incompleteTodo}>
 								<div className="list-row">
 									<span>{incompleteTodo}</span>
-									<button>完了</button>
+									<button
+										onClick={() => {
+											onClickComplete(index);
+										}}
+									>
+										完了
+									</button>
 									<button
 										onClick={() => {
 											onClickDelete(index);
