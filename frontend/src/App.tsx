@@ -25,16 +25,26 @@ function App() {
 		setTodoText(e.target.value);
 	};
 
-  // 追加ボタンのイベントを定義
-  const onClickAdd = () => {
-    // 未入力の場合は処理を終了
-    if(todoText === "") return;
-    // 未完了のTODOリストをコピーして、新しいタスクを追加
-    const newTodos = [...incompleteTodos, todoText];
-    // 生成した配列を未完了TODOリストとしてセット
-    setIncompleteTodos(newTodos);
-    setTodoText("");
-  }
+	// 追加ボタンのイベントを定義
+	const onClickAdd = () => {
+		// 未入力の場合は処理を終了
+		if (todoText === "") return;
+		// 未完了のTODOリストをコピーして、新しいタスクを追加
+		const newTodos = [...incompleteTodos, todoText];
+		// 生成した配列を未完了TODOリストとしてセット
+		setIncompleteTodos(newTodos);
+		setTodoText("");
+	};
+
+	//削除ボタンのイベントを定義
+	const onClickDelete = (index: number) => {
+		// 未完了のTODOリストをコピー
+		const newTodos = [...incompleteTodos];
+		// コピーした配列から、該当するindexの要素を削除する
+		newTodos.splice(index, 1);
+		// 削除後の配列を未完了TODOリストとしてセット
+		setIncompleteTodos(newTodos);
+	};
 
 	return (
 		<>
@@ -52,13 +62,19 @@ function App() {
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
 				<ul>
-					{incompleteTodos.map((incompleteTodo: string) => {
+					{incompleteTodos.map((incompleteTodo, index) => {
 						return (
 							<li key={incompleteTodo}>
 								<div className="list-row">
 									<span>{incompleteTodo}</span>
 									<button>完了</button>
-									<button>削除</button>
+									<button
+										onClick={() => {
+											onClickDelete(index);
+										}}
+									>
+										削除
+									</button>
 								</div>
 							</li>
 						);
@@ -69,13 +85,12 @@ function App() {
 			<div className="complete-area">
 				<p className="title">完了のTODO</p>
 				<ul>
-					{completeTodos.map((completeTodo: string) => {
+					{completeTodos.map((completeTodo) => {
 						return (
 							<li key={completeTodo}>
 								<div className="list-row">
 									<span>{completeTodo}</span>
-									<button>完了</button>
-									<button>削除</button>
+									<button>戻す</button>
 								</div>
 							</li>
 						);
