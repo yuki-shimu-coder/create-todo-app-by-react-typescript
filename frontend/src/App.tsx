@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "./styles.css";
 
@@ -52,14 +51,30 @@ function App() {
 		const newIncompleteTodosTodos = [...incompleteTodos];
 		// コピーした配列から、該当するindexの要素を削除する
 		newIncompleteTodosTodos.splice(index, 1);
-    
+
 		// 完了のTODOリストをコピーして、完了したタスクを追加
 		const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
 
 		// 削除後の配列を未完了TODOリストとしてセット
 		setIncompleteTodos(newIncompleteTodosTodos);
-    // タスクが追加された配列をセット
-    setCompleteTodos(newCompleteTodos);
+		// タスクが追加された配列をセット
+		setCompleteTodos(newCompleteTodos);
+	};
+
+	// 戻すボタンのイベントを定義
+	const onClickBack = (index: number) => {
+		// 完了のTODOリストをコピー
+		const newCompleteTodos = [...completeTodos];
+		// コピーした配列から、該当するindexの要素を削除する
+		newCompleteTodos.splice(index, 1);
+
+		// 未完了のTODOリストをコピーして、戻すタスクを追加
+		const newIncompleteTodosTodos = [...incompleteTodos, completeTodos[index]];
+
+		// 完了タスクの反映
+		setCompleteTodos(newCompleteTodos);
+		// 未完了タスクの反映
+		setIncompleteTodos(newIncompleteTodosTodos);
 	};
 
 	return (
@@ -107,12 +122,18 @@ function App() {
 			<div className="complete-area">
 				<p className="title">完了のTODO</p>
 				<ul>
-					{completeTodos.map((completeTodo) => {
+					{completeTodos.map((completeTodo, index) => {
 						return (
 							<li key={completeTodo}>
 								<div className="list-row">
 									<span>{completeTodo}</span>
-									<button>戻す</button>
+									<button
+										onClick={() => {
+											onClickBack(index);
+										}}
+									>
+										戻す
+									</button>
 								</div>
 							</li>
 						);
