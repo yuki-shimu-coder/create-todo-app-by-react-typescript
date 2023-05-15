@@ -64,6 +64,7 @@ function App() {
   // 配列にも適用可能
 	let arrayUni: (number | string)[];
 	arrayUni = [1, 2, 3, "hello"];
+	
 	return (
 		<div className="App">
 			<header className="App-header">
