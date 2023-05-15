@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-	/** マウスをホーバーすることで型推論による型を確認できる */
+	/** マウスをホバーすることで型推論による型を確認できる */
 	let usrName = "name";
 	let dummyNum = 2;
 	let bool = true;
@@ -45,7 +45,7 @@ function App() {
 		username: string;
 		password: string;
 	};
-	/** USER 型は、age プロパティ、city プロパティ、username プロパティ、および password プロパティを持つオブジェクトを表します。 */
+	/** USER 型は、age、city、username、password プロパティを持つオブジェクトを表します。 */
 	type USER = PROFILE & LOGIN;
 	const userA: USER = {
 		age: 30,
@@ -54,6 +54,16 @@ function App() {
 		password: "password",
 	};
 
+	/**
+	 * UnionTypes
+	 * 変数、パラメーター、または関数の戻り値の型を 2 つ以上の型の組み合わせとして定義できる機能
+	 */
+	let value: boolean | number;
+	value = true;
+	value = 1;
+  // 配列にも適用可能
+	let arrayUni: (number | string)[];
+	arrayUni = [1, 2, 3, "hello"];
 	return (
 		<div className="App">
 			<header className="App-header">
