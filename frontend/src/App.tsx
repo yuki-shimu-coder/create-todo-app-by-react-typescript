@@ -28,7 +28,7 @@ function App() {
 		last: "taro",
 	};
 
-	/** 関数宣言 () : [リターン値の型を定義する事ができる] */
+	/** 関数宣言 (引数の型, 引数の型) : [リターン値の型] */
 	const func1 = (x: number, y: number): number => {
 		return x + y;
 	};
@@ -56,15 +56,37 @@ function App() {
 
 	/**
 	 * UnionTypes
-	 * 変数、パラメーター、または関数の戻り値の型を 2 つ以上の型の組み合わせとして定義できる機能
+	 * 変数、パラメーター、または関数の戻り値の型を 2つ以上の型の組み合わせとして定義できる機能
 	 */
 	let value: boolean | number;
 	value = true;
 	value = 1;
-  // 配列にも適用可能
+	// 配列にも適用可能
 	let arrayUni: (number | string)[];
 	arrayUni = [1, 2, 3, "hello"];
-	
+
+	/**
+	 * LiteralTypes
+	 * リテラル型は、文字列、数値、真偽値などの具体的な値を型として指定することができます。
+	 * リテラル型を使用することで、特定の値のみを受け入れるような厳密な型チェックが可能になります。
+	 * これにより、意図しない値の代入や渡し忘れなどのミスを防ぐことができます。
+	 */
+	let company: "Facebook" | "Google" | "Amazon";
+	company = ""; // error
+	company = "Amazon"; // normal
+
+	let memory: 256 | 512 | 1024;
+	memory = 128; // error
+	memory = 256; // normal
+
+	/**
+	 * typeof
+	 * typeof で型を取得し、そのまま別の変数に型を定義することができる
+	 */
+	let msg: string = "Hello,World";
+	let msg2: typeof msg = "バルス、世界";
+
+
 	return (
 		<div className="App">
 			<header className="App-header">
