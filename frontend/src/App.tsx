@@ -154,6 +154,25 @@ function App() {
 	// 	// OSType: OS.Linu, // error
 	// };
 
+	/**
+	 * 型の互換性
+	 * リテラル型
+	 * リテラル型は、その名の通り「値そのものが型になる」という特殊な型です。
+	 * "test" リテラル型は "test" という値のみを取ります。
+	 * comp3 が "test" の値を持っているといっても、その型は string です。
+	 * そのため、型チェックが厳格であるある場合、エラーを引き起こす可能性がある
+	 */
+	const comp1 = "test";
+	let comp2: string = comp1;
+	let comp3: string = "test";
+	// let comp4: "test" = comp3; //error
+	let comp4: "test" = "test";
+	let comp5: "test" = comp4;
+	// 関数
+	let funcComp1 = (x: number) => {};
+	let funcComp2 = (x: string) => {};
+	// funcComp1 = funcComp2; // error  どちらも関数のデータ型が異なるのでエラー戸なsる
+	// funcComp2 = funcComp1; // error
 
 	return (
 		<div className="App">
