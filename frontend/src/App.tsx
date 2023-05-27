@@ -94,8 +94,18 @@ function App() {
 
 	/**
 	 * keyof
-	 * 
+	 * keyofキーワードは、オブジェクト型のプロパティキーを取得するために使用される。
+	 * keyofを使用すると、指定したオブジェクト型のプロパティ名のユニオン型が得られます。
+	 * ユニオン型は、58行目を参照。
 	 */
+	type KEYS = {
+		primary: string;
+		secondary: string;
+	};
+	let key: keyof KEYS;
+	key = "primary";
+	key = "secondary";
+	// key = "failed"; //error
 
 	return (
 		<div className="App">
