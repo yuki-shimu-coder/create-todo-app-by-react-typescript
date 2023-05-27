@@ -72,20 +72,30 @@ function App() {
 	 * これにより、意図しない値の代入や渡し忘れなどのミスを防ぐことができます。
 	 */
 	let company: "Facebook" | "Google" | "Amazon";
-	company = ""; // error
+	// company = ""; // error
 	company = "Amazon"; // normal
 
 	let memory: 256 | 512 | 1024;
-	memory = 128; // error
+	// memory = 128; // error
 	memory = 256; // normal
 
 	/**
 	 * typeof
 	 * typeof で型を取得し、そのまま別の変数に型を定義することができる
+	 * オブジェクトが複雑な構造属性を保有している場合でも継承してくれる。
+	 * 開発者が属性をいちいち定義する必要がなくなるというのが一番強力な武器となる。
 	 */
 	let msg: string = "Hello,World";
-	let msg2: typeof msg = "バルス、世界";
+	let msg2: typeof msg = "バルス、世界"; // string型を定義しているのと一緒
 
+	let animal = { cat: "mikeneko" };
+	// let animal2: typeof animal = { dog: "innu" }; // error
+	let animal3: typeof animal = { cat: "BigNeko" }; // nomal
+
+	/**
+	 * keyof
+	 * 
+	 */
 
 	return (
 		<div className="App">
