@@ -124,6 +124,37 @@ function App() {
 	keySports = "baseball";
 	// keySports = "tennis"; //error
 
+	/**
+	 * enum
+	 * 連番をつけてくれる機能
+	 * 列挙型を使うことで以下のメリットが有る
+	 * 1.特定の変数がとり得る値を明示的に示すことができる
+	 * 2.型チェックを厳密に行うことが可能になる。定義外の値を入れようとするとコンパイルエラーになる
+	 * 3.コーディング中に自動補完してくれる
+	 */
+	enum OS {
+		Windows,
+		Mac,
+		Linux,
+	}
+	interface PC {
+		id: number;
+		OSType: OS;
+	}
+	const PC1: PC = {
+		id: 1,
+		OSType: OS.Windows,
+	};
+	const PC2: PC = {
+		id: 2,
+		OSType: OS.Mac,
+	};
+	// const PC3: PC = {
+	// 	id: 2,
+	// 	// OSType: OS.Linu, // error
+	// };
+
+
 	return (
 		<div className="App">
 			<header className="App-header">
