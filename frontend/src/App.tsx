@@ -107,6 +107,23 @@ function App() {
 	key = "secondary";
 	// key = "failed"; //error
 
+	/**
+	 * typeof + keyof
+	 * keyof typeofの組み合わせは、型の安全性を高めるために役立ちます。
+	 * また、オブジェクトのプロパティキーの列挙や反復処理など、動的な操作を行う場合にも便利です
+	 * 1. typeof でデータ構造を取得
+	 * 2. その後 keyof で 1 で取得したオブジェクトのプロパティ名のユニオン型を取得
+	 * 下記のkeySportsには, SPORTS オブジェクトの正しいプロパティが代入される。
+	 */
+	const SPORTS = {
+		soccoer: "Soccer",
+		baseball: "Baseboll",
+	};
+	let keySports: keyof typeof SPORTS;
+	keySports = "soccoer";
+	keySports = "baseball";
+	// keySports = "tennis"; //error
+
 	return (
 		<div className="App">
 			<header className="App-header">
