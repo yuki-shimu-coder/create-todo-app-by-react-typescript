@@ -86,7 +86,7 @@ function App() {
 	 * 開発者が属性をいちいち定義する必要がなくなるというのが一番強力な武器となる。
 	 */
 	let msg: string = "Hello,World";
-	let msg2: typeof msg = "バルス、世界"; // string型を定義しているのと一緒
+	let msg2: typeof msg = "見ろ、人がゴミのようだ"; // string型を定義しているのと一緒
 
 	let animal = { cat: "mikeneko" };
 	// let animal2: typeof animal = { dog: "innu" }; // error
@@ -157,10 +157,10 @@ function App() {
 	/**
 	 * 型の互換性
 	 * リテラル型
-	 * リテラル型は、その名の通り「値そのものが型になる」という特殊な型です。
-	 * "test" リテラル型は "test" という値のみを取ります。
-	 * comp3 が "test" の値を持っているといっても、その型は string です。
-	 * そのため、型チェックが厳格であるある場合、エラーを引き起こす可能性がある
+	 * リテラル型は、その名の通り「値そのものが型になる」という特殊な型。
+	 * "test" リテラル型は "test" という値のみを取る。
+	 * comp3 が "test" の値を持っているといっても、その型は stringである。
+	 * そのため、コメントアウトされた comp4 は型チェックが厳格である場合、エラーを引き起こす可能性がある
 	 */
 	const comp1 = "test";
 	let comp2: string = comp1;
@@ -173,6 +173,71 @@ function App() {
 	let funcComp2 = (x: string) => {};
 	// funcComp1 = funcComp2; // error  どちらも関数のデータ型が異なるのでエラー戸なsる
 	// funcComp2 = funcComp1; // error
+
+	/**
+	 * Generics ジェネリクス
+	 * さまざまな型で動作するように関数やクラスを作成する際に役立つ。
+	 * 型が不確定な状況で、型の安全性を保証するために使用される。
+	 * ジェネリクスを使うと、関数やクラスが操作する型を決定するのは、関数が呼び出されるか
+	 * クラスがインスタンス化されるときとなる。
+	 * それにより、再利用性が高まり、型安全性も確保できます。
+	 */
+	interface GEN<T> {
+		item: T;
+	}
+	const genA: GEN<string> = { item: "string型" };
+	const genB: GEN<number> = { item: 1 };
+	// const gen2: GEN<string> = { item: 2 }; // error
+
+	// ジェネリクスの初期値を指定
+	interface GEN01<T = string> {
+		item: T;
+	}
+	// 初期値がある場合、ジェネリクスを指定しなくてもエラーが出ない。
+	const gen01: GEN01 = { item: "string" };
+
+	// extendsで定義された制約条件を満たさないとエラー
+	interface GEN02<T extends string | number> {
+		item: T;
+	}
+	const gen02_01: GEN02<string> = { item: "string型" };
+	const gen02_02: GEN02<number> = { item: 1 };
+	// const gen02_03: GEN02<boolean> = { item: true }; // error
+
+	// 関数に対するジェネリクスの適用の仕方 **(return値に定義したinterfaceで型定義することもできる)**
+	function funcGen<T>(props: T): GEN<T> {
+		return { item: props };
+	}
+	const gen03 = funcGen<string>("string");
+	const gen04 = funcGen<string | null>("string"); //ユニオンタイプ指定することも可能
+
+	// 関数の場合のジェネリクスのextends **(return値を定義していなくてもエラーは起きない)**
+	function funcGen1<T extends string | null>(props: T) {
+		return { item: props };
+	}
+
+	const gen05 = funcGen1<string>("string");
+	const gen06 = funcGen1<null>(null);
+	// const gen07 = funcGen1<number>(1); // error
+
+	// この関数は引数として何らかの型 T を受け取り、同じ型 T を返す
+	// この関数を呼び出すときには、具体的な型（この例では string）を指定する
+	function identity<T>(arg: T): T {
+		return arg;
+	}
+	let output = identity<string>("myString");
+
+	interface Props {
+		price: number;
+	}
+	// 関数の型パラメータTは、Propsインターフェースを拡張した何らかの型であることが期待される
+	// この関数はpriceプロパティを持つ任意のオブジェクトを受け取ることができる
+	function funcGen2<T extends Props>(props: T) {
+		return { value: props.price };
+	}
+	//
+	const gen07 = funcGen2({ price: 10 });
+	// const gen07 = funcGen2({ tax: 10 }); // error
 
 	return (
 		<div className="App">
