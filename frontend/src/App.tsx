@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import TestComponet from "./TestComponent";
 
-function App() {
+const App: React.FC = () => {
 	/** マウスをホバーすることで型推論による型を確認できる */
 	let usrName = "name";
 	let dummyNum = 2;
@@ -254,9 +255,10 @@ function App() {
 				>
 					Learn React
 				</a>
+				<TestComponet text="string" />
 			</header>
 		</div>
 	);
-}
+};
 
 export default App;
