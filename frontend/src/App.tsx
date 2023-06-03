@@ -258,7 +258,6 @@ const App: React.FC = () => {
 
 				{/* propsの型定義を示したコンポーネント */}
 				<TestComponet text="string" />
-				
 			</header>
 		</div>
 	);
