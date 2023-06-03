@@ -13,6 +13,16 @@ interface Props {
 const TestComponet: React.FC<Props> = (props) => {
 	/** ジェネリクスで型を指定することもできる */
 	const [count, setCount] = useState<number | null>(0);
+	/** カウント増やす処理 */
+	const onClick = () => {
+		if(count !== null){	
+			setCount(count + 1);
+		} else {
+			// countがnullの場合、何らかの処理を行う。
+			// 例えば,setCountを１で初期化するなど。
+			setCount(1)
+		}
+	};
 
 	/** useStateでオブジェクトの型を指定したい場合 */
 	interface UserData {
@@ -26,6 +36,7 @@ const TestComponet: React.FC<Props> = (props) => {
 		<div>
 			<p>{props.text}</p>
 			<p>{count}</p>
+			<button onClick={onClick}>カウントを増やす</button>
 		</div>
 	);
 };
