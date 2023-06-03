@@ -255,7 +255,10 @@ const App: React.FC = () => {
 				>
 					Learn React
 				</a>
+
+				{/* propsの型定義を示したコンポーネント */}
 				<TestComponet text="string" />
+				
 			</header>
 		</div>
 	);
