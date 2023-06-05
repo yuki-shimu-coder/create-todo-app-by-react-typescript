@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import "./styles.css";
+import { InputTextArea } from "./components/InputTextArea";
 
 function App() {
 	// 入力値のstate string型
@@ -79,15 +80,12 @@ function App() {
 	return (
 		<>
 			{/* タスク入力エリア */}
-			<div className="input-area">
-				<input
-					type="text"
-					placeholder="TODOを入力"
-					value={todoText}
-					onChange={onChangeTodoText}
-				/>
-				<button onClick={onClickAdd}>追加</button>
-			</div>
+			<InputTextArea
+				todoText={todoText}
+				onChange={onChangeTodoText}
+				onClick={onClickAdd}
+			/>
+
 			{/* 未完了エリア */}
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
