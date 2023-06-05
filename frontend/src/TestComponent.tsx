@@ -15,12 +15,12 @@ const TestComponet: React.FC<Props> = (props) => {
 	const [count, setCount] = useState<number | null>(0);
 	/** カウント増やす処理 */
 	const onClick = () => {
-		if(count !== null){	
+		if (count !== null) {
 			setCount(count + 1);
 		} else {
 			// countがnullの場合、何らかの処理を行う。
 			// 例えば,setCountを１で初期化するなど。
-			setCount(1)
+			setCount(1);
 		}
 	};
 
@@ -32,11 +32,20 @@ const TestComponet: React.FC<Props> = (props) => {
 	}
 	const [user, setUser] = useState<UserData>({ id: 1, name: "taro", age: 20 });
 
+	/** Event handler : データ型 */
+	const [inputText, setInputText] = useState<string>("");
+	/** 入力値を変更する */
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInputText(e.target.value);
+	};
+
 	return (
 		<div>
 			<p>{props.text}</p>
 			<p>{count}</p>
 			<button onClick={onClick}>カウントを増やす</button>
+			<p>{inputText}</p>
+			<input type="text" value={inputText} onChange={handleInputChange} />
 		</div>
 	);
 };
