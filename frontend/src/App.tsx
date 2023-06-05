@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import "./styles.css";
 import { InputTextArea } from "./components/InputTextArea";
+import { InCompleteArea } from "./components/InCompleteArea";
+import { CompleteArea } from "./components/CompleteArea";
 
 function App() {
 	// 入力値のstate string型
@@ -87,56 +89,14 @@ function App() {
 			/>
 
 			{/* 未完了エリア */}
-			<div className="incomplete-area">
-				<p className="title">未完了のTODO</p>
-				<ul>
-					{incompleteTodos.map((incompleteTodo, index) => {
-						return (
-							<li key={incompleteTodo}>
-								<div className="list-row">
-									<span>{incompleteTodo}</span>
-									<button
-										onClick={() => {
-											onClickComplete(index);
-										}}
-									>
-										完了
-									</button>
-									<button
-										onClick={() => {
-											onClickDelete(index);
-										}}
-									>
-										削除
-									</button>
-								</div>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+			<InCompleteArea
+				incompleteTodos={incompleteTodos}
+				onClickComplete={onClickComplete}
+				onClickDelete={onClickDelete}
+			/>
+
 			{/* 完了エリア */}
-			<div className="complete-area">
-				<p className="title">完了のTODO</p>
-				<ul>
-					{completeTodos.map((completeTodo, index) => {
-						return (
-							<li key={completeTodo}>
-								<div className="list-row">
-									<span>{completeTodo}</span>
-									<button
-										onClick={() => {
-											onClickBack(index);
-										}}
-									>
-										戻す
-									</button>
-								</div>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+			<CompleteArea completeTodos={completeTodos} onClickBack={onClickBack} />
 		</>
 	);
 }
